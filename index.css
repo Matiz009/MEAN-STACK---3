@@ -4,8 +4,25 @@
 }
 
 body {
-  background-color: black;
+  
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: large;
-  color: white;
+  
 }
+
+
+.anchor {
+  color: rgb(107, 0, 0);
+  text-decoration: none;
+  font-size: 20px;
+
+}
+
+#s5{
+color: royalblue;
+font-size: 20px;
+font-weight: bold;
+text-decoration: underline;
+
+}
+
