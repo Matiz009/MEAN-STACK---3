@@ -26,3 +26,33 @@ text-decoration: underline;
 
 }
 
+.underline{
+text-decoration: underline;
+}
+
+
+h1,li{
+background-color: brown;
+color: white;
+font-size: 40px;
+}
+
+
+div{
+background-color: chocolate;
+color: #000;
+
+}
+
+span{
+font-weight: bolder;
+color: #000;
+font-size: 20px;
+text-decoration: underline;
+}
+
+div>img{
+  width: 50%;
+  height: auto;
+  border-radius: 10px;
+}
