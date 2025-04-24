@@ -40,12 +40,13 @@ app.get("/books", async (req, res) => {
 //end point to get a book by id
 
 app.get("/books/:id", async (req, res) => {
-  const id = parseInt(req.params.id);
-  const book = await book.findOne({ id });
-  if (!book) {
-    return res.status(404).json({ message: "Book not found" });
+  const postId = req.params.id;
+  const post = await book.findById(postId); // Fetch post by ID from the database
+  if (!post) {
+    return res.status(404).json({ error: "Post not found" });
+  } else {
+    res.json(post); // Send the post as JSON response
   }
-  res.json(book);
 });
 
 //end point to create a book
@@ -67,34 +68,44 @@ app.post("/create-book", async (req, res) => {
 
 //end point to update a book
 app.put("/books/:id", async (req, res) => {
-  const id = parseInt(req.params.id);
-  const { title, author, publishedDate, Code, description } = req.body;
-  const bookToUpdate = await book.findByIdAndUpdate(
-    id,
-    {
-      title,
-      author,
-      publishedDate,
-      Code,
-      description,
-    },
-    { new: true }
-  );
-  if (!bookToUpdate) {
-    return res.status(404).json({ message: "Book not found" });
-  }
-  res.json(bookToUpdate);
-});
+  try {
+    const id = req.params.id; // Use the string directly
+    const { title, author, publishedDate, Code, description } = req.body;
 
+    const bookToUpdate = await book.findByIdAndUpdate(
+      id,
+      {
+        title,
+        author,
+        publishedDate,
+        Code,
+        description,
+      },
+      { new: true } // Return the updated document
+    );
+
+    if (!bookToUpdate) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+
+    res.json(bookToUpdate);
+  } catch (error) {
+    res.status(500).json({ message: "Invalid ID format or server error" });
+  }
+});
 //end point to delete a book
 
 app.delete("/books/:id", async (req, res) => {
-  const id = parseInt(req.params.id);
-  const bookToDelete = await book.findByIdAndDelete(id);
-  if (!bookToDelete) {
-    return res.status(404).json({ message: "Book not found" });
+  try {
+    const id = req.params.id; // Use the string directly
+    const bookToDelete = await book.findByIdAndDelete(id); // Query by MongoDB's _id
+    if (!bookToDelete) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+    res.json({ message: "Book deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Invalid ID format or server error" });
   }
-  res.json({ message: "Book deleted successfully" });
 });
 
 app.listen(PORT, () => {
