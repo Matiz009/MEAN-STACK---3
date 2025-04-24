@@ -70,81 +70,141 @@ let d = true; // Boolean
 
 //operators
 
-// Arithmetic Operators
-let x = 10;
-let y = 5;
-let sum = x + y; // Addition
-let difference = x - y; // Subtraction
-let product = x * y; // Multiplication
-let quotient = x / y; // Division
-let remainder = x % y; // Modulus
-let exponent = x ** y; // Exponentiation
-let increment = ++x; // Increment
+// // Arithmetic Operators
+// let x = 10;
+// let y = 5;
+// let sum = x + y; // Addition
+// let difference = x - y; // Subtraction
+// let product = x * y; // Multiplication
+// let quotient = x / y; // Division
+// let remainder = x % y; // Modulus
+// let exponent = x ** y; // Exponentiation
+// let increment = ++x; // Increment
 
-let decrement = --y; // Decrement
+// let decrement = --y; // Decrement
 
-console.table({
-  sum: sum,
-  difference: difference,
-  product: product,
-  quotient: quotient,
-  remainder: remainder,
-  exponent: exponent,
-  increment: increment,
-  decrement: decrement,
-});
+// console.table({
+//   sum: sum,
+//   difference: difference,
+//   product: product,
+//   quotient: quotient,
+//   remainder: remainder,
+//   exponent: exponent,
+//   increment: increment,
+//   decrement: decrement,
+// });
 
-// difference between == and ===
-let num1 = 5; // Number
+// // difference between == and ===
+// let num1 = 5; // Number
 
-let str1 = "5"; // String
+// let str1 = "5"; // String
 
-console.log(num1 == str1); // true (loose equality)
+// console.log(num1 == str1); // true (loose equality)
 
-//because it converts str1 to a number before comparison it's called type coercion
+// //because it converts str1 to a number before comparison it's called type coercion
 
-console.log(num1 === str1); // false (strict equality)
-//because it doesn't convert str1 to a number before comparison
-// it checks both value and type
+// console.log(num1 === str1); // false (strict equality)
+// //because it doesn't convert str1 to a number before comparison
+// // it checks both value and type
 
-//comparison operators
-let a1 = 10;
-let b1 = 20;
-let c1 = 30;
+// //comparison operators
+// let a1 = 10;
+// let b1 = 20;
+// let c1 = 30;
 
-if (a1 < b1) {
-  console.log("a is less than b");
-} else if (a1 > b1) {
-  console.log("a is greater than b");
-} else {
-  console.log("a is equal to b");
+// if (a1 < b1) {
+//   console.log("a is less than b");
+// } else if (a1 > b1) {
+//   console.log("a is greater than b");
+// } else {
+//   console.log("a is equal to b");
+// }
+
+// //ways to write functions
+
+// function add(a, b) {
+//   return a + b;
+// }
+
+// let add = function (a, b) {
+//   return a + b;
+// };
+
+// let add = (a, b) => {
+//   return a + b;
+// };
+
+// let add = (a, b) => a + b; // Implicit return
+
+// //iif statement
+
+// (function () {
+//   console.log("This is an IIFE (Immediately Invoked Function Expression)");
+// })();
+
+// //loops
+
+// for (let i = 0; i < 5; i++) {
+//   console.log(i); // Prints 0 to 4
+// }
+
+
+//objects in JS
+
+let student = {
+    name: "John",
+    age: 25,
+    isStudent: true,
+    subjects: ["Math", "Science", "English"],
+    address: {
+      city: "New York",
+      state: "NY",
+    },
+
 }
 
-//ways to write functions
+const { name, age } = student; // Destructuring assignment
+console.log(name); // Accessing object properties
+console.log(age); // Accessing object properties
 
-function add(a, b) {
-  return a + b;
+
+console.log(student.name); // Accessing object properties
+console.log(student["age"]); // Accessing object properties using bracket notation
+
+
+student.address.city = "Los Angeles"; // Modifying object properties
+console.log(student.address.city); // Accessing nested object properties
+
+
+//constructor  function
+
+function Student(name, age) {
+    this.name = name;
+    this.age = age;
+    this.isStudent = true;
+    this.subjects = ["Math", "Science", "English"];
+    this.address = {
+        city: "New York",
+        state: "NY",
+    };
 }
 
-let add = function (a, b) {
-  return a + b;
-};
 
-let add = (a, b) => {
-  return a + b;
-};
+let student1 = new Student("John", 25); // Creating an object using the constructor function    
+console.log(student1.name); // Accessing object properties
 
-let add = (a, b) => a + b; // Implicit return
 
-//iif statement
+//let vs var vs const
+// var is function-scoped or globally-scoped
 
-(function () {
-  console.log("This is an IIFE (Immediately Invoked Function Expression)");
-})();
+var alpha = 10; // Global scope
 
-//loops
+var alpha = 20; // Re-declared in the same scope (allowed with var)
+console.log(alpha); // Output: 20
 
-for (let i = 0; i < 5; i++) {
-  console.log(i); // Prints 0 to 4
-}
+let alpha1 = 10; // Block scope
+alpha1 = 20; // Re-declared in the same scope (not allowed with let) but reassigning is allowed
 
+const alpha2 = 10; // Block scope
+alpha2 = 20; // Re-declared in the same scope (not allowed with const) but reassigning is not allowed
+console.log(alpha1); // Output: 20
