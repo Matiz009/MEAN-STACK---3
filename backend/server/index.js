@@ -27,6 +27,11 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+app.get("/about", (req, res) => {
+  res.send("about");
+});
+
+
 //end point to get all the books
 
 app.get("/books", async (req, res) => {
